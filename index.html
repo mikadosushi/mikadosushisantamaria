@@ -11,7 +11,12 @@
 <script type="text/javascript" src="scripts/jqFancyTransitions.1.8.min.js"></script>
 <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="scripts/scripts.js"></script>
-
+<script>
+var loc = window.location.href+'';
+if (loc.indexOf('https://')==0){
+    window.location.href = loc.replace('https://','http://');
+}
+</script>
 </head>
 <body>
 
