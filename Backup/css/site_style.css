@@ -1,0 +1,14 @@
+body{
+  
+ background-color:grey;  
+ color:white;
+ 	font: normal normal normal 16px/1.3 'Lucida Sans Unicode', Arial, Helvetica, sans-serif;
+}
+	td.navMenu{
+				background-repeat:no-repeat;
+				background-position:0px -117px
+				}
+	
+	#Table_01{
+		margin:auto	
+	}

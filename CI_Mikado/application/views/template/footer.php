@@ -1,0 +1,1 @@
+<div id="footer">Your IP is: <?php echo $this->input->ip_address()?>  <br/>This application provided as a demonstration by BisonPC.  <br/>Contact the webmaster at: TJ@bisonpc.net</div>

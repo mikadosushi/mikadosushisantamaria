@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sushi and Japanese Food Restaurant--Eat Authentic Coastal Cuisine in Santa Maria, CA|Mikado Sushi</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="css/960.css" /> 
+<link rel="stylesheet" href="css/site_style.css" /> 
+<link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css"/>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="scripts/jquery.min.js"></script>
+<script type="text/javascript" src="scripts/jqFancyTransitions.1.8.min.js"></script>
+<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="scripts/scripts.js"></script>
+
+</head>
+<body>
+
+<div class="container_16">
+
+		<div class="grid_5 menuRow omega" style="background:url('images/site_template_960_01.png');width:290px" onclick="window.location='index.html'">&nbsp;</div>
+		<div class="grid_2 menuRow menuLink alpha omega" style="background:url('images/site_template_960_02.png');width:120px" onclick="window.location='menu.html'">&nbsp;</div>
+		<div class="grid_3 menuRow menuLink alpha omega" style="background:url('images/site_template_960_03.png');width:180px" onclick="window.location='index.html'">&nbsp;</div>
+		<div class="grid_3 menuRow menuLink alpha omega" style="background:url('images/site_template_960_04.png');width:180px" onclick="window.location='index.html'">&nbsp;</div>
+		<div class="grid_3 menuRow menuLink alpha omega" style="background:url('images/site_template_960_05.png');width:170px" onclick="window.location='index.html'">&nbsp;</div>
+		
+		<div class="grid_16" style="position:relative;background:url('images/site_template_960_07.png') repeat-y">
+		<div id="socialLinks">
+			<div id="facebookLink" class="socialLink" onclick="window.location='http://www.facebook.com/pages/Mikado-Sushi-and-Japanese-Restaurant/208810929131541'">&nbsp;</div>
+			<div id="googleLink" class="socialLink" onclick="window.location='http://maps.google.com/maps/place?hl=en&safe=off&bav=on.2,or.r_gc.r_pw.&biw=1920&bih=1061&um=1&ie=UTF-8&q=sushi+santa+maria&fb=1&gl=us&hq=sushi+santa+maria&hnear=0x80ec0faa0c54c609:0xbfd52658a5a348e,Santa+Maria,+CA&cid=9656718264740910182&sa=X&ei=zsbhTc6MKIrhiALa1NyYBg&ved=0CGIQ3Q4'">&nbsp;</div>
+			<div id="yahooLink" class="socialLink" onclick="window.location='http://local.yahoo.com/info-41950816-mikado-japanese-restaurant-santa-maria'">&nbsp;</div>
+		</div>		
+			<div class="container_16 alpha omega" style="background:url('images/site_template_960_06.png') no-repeat;min-height:725px;margin-top:0px">
+			<div id='galleryImages' class='grid_16'><div id='galleryContainer'></div><img id='orchid' src='images/orchid.png'/></div>
+		        <div class="clear"></div>
+		        <div class="container_16" style="padding-left:10px">
+		  </div>
+				<div class="clear"></div>
+		    <div class="container_16" style="padding-left:15px;padding-top:10px;text-align:center">
+				<img src="http://www.mikadosushisantamaria.com/images/menu/Appetizers.jpg"/>
+				<img src="http://www.mikadosushisantamaria.com/images/menu/Rolls1.jpg"/>
+        <img src="http://www.mikadosushisantamaria.com/images/menu/Rolls2.jpg"/>
+        <img src="http://www.mikadosushisantamaria.com/images/menu/dinner.jpg"/>
+        <img src="http://www.mikadosushisantamaria.com/images/menu/drinks.jpg"/>
+        <img src="http://www.mikadosushisantamaria.com/images/menu/lunch.jpg"/>
+        <img style="width:850px;margin-left:-55px" src="http://www.mikadosushisantamaria.com/images/menu/ymenu.jpg"/>
+        </div>
+		</div>
+		</div>
+		<div class="grid_16 omega" style="background:url('images/site_template_960_08.png');background-position:0 -30px;height:18px">
+</div>
+<script>
+/**
+ * @author tj
+ */
+var timerInterval = 10000;
+var restartObj = {
+      				onStart:function(){clearInterval(galleryTimer)},
+      				onClosed:function(){galleryTimer = setInterval(galleryRun, timerInterval);}
+      			};
+var jsonObject;    						
+var galleryTimer;
+function galleryRun(){	
+    						
+     						$('#galleryContainer').hide().html('');	
+     						
+     						for(i=0;i<3;i++)
+											{	
+														
+												source = jsonObject.data[jsonObject.total].source;											
+												$('#galleryContainer').append('<a class="galleryImage" href="'+source+'" target="_blank"><img class="galleryImage grid_5" style="margin-right:20px"src="'+source+'"/></a>');      	     			
+      											jsonObject.total = (jsonObject.total+1)%jsonObject.data.length;
+      										};
+      										(function($) {
+  													var cache = [];
+  													// Arguments are image paths relative to the current page.
+  												$.preLoadImages = function() {
+    											
+    											for (var i = jsonObject.total;i<(jsonObject.total+3); i++) {
+      												var cacheImage = document.createElement('img');
+      												cacheImage.src =jsonObject.data[i%jsonObject.data.length].source;
+      												cache.push(cacheImage);
+    																		}
+  																			}
+															})(jQuery);
+      						$('#galleryContainer').fadeIn(300);
+      						$('#galleryContainer>a').fancybox(restartObj); 
+
+	
+};
+
+$('#uploadLink').fancybox(restartObj);
+
+$(document).ready(function(){
+	$('.contentContainer>.galleryImage').fancybox(restartObj); 
+	$.ajax({
+ 			url: "http://graph.facebook.com/209684229044211/photos",
+  			success: function(jsonResponse){
+  											jsonObject = jsonResponse;
+  											jsonObject.total = 0;
+  											galleryRun();
+  											galleryTimer = setInterval(galleryRun, timerInterval); 
+  											}
+			});
+  });
+</script>
+</body>
+</html>
